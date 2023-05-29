@@ -1,63 +1,29 @@
-import java.io.BufferedReader;
+import com.sun.net.httpserver.HttpServer;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.InetSocketAddress;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.concurrent.Executors;
 
 public class Main {
-    public static void main(String[] args) {
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Asus Tuf\\OneDrive\\Desktop\\Code\\Java\\API-E-Commerce-App\\Database\\ecommerce.db");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static Connection connection;
 
-        int port = 8071;
+    public static void main(String[] args) throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8071), 0);
+        DatabaseManager databaseManager = new DatabaseManager();
+        connection = databaseManager.connect();
+        System.out.println("Berhasil connect ke database");
 
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("HTTP Server berjalan pada port " + port);
-            System.out.println("Kunjungi pada : http://localhost:8071/ ");
-
-
-            while (true) {
-                Socket clientSocket = serverSocket.accept();
-                Thread thread = new Thread(() -> handleRequest(clientSocket));
-                thread.start();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void handleRequest(Socket clientSocket) {
-        try (
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                OutputStream out = clientSocket.getOutputStream()
-        ) {
-            StringBuilder requestBuilder = new StringBuilder();
-            String line;
-            while ((line = in.readLine()) != null && !line.isEmpty()) {
-                requestBuilder.append(line).append("\r\n");
-            }
-
-            String request = requestBuilder.toString();
-
-            String response = "HTTP/1.1 200 OK\r\n"
-                    + "Content-Type: text/plain\r\n"
-                    + "\r\n"
-                    + "Hello, Bro!";
-
-            out.write(response.getBytes());
-            out.flush();
-
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        server.createContext("/users", new APIController.UserHandler());
+        server.createContext("/users/", new APIController.UserByIdHandler());
+//        server.createContext("/users/{id}/products", new APIController.userProductsHandler());
+//        server.createContext("/users/{id}/orders", new APIController.userOrdersHandler());
+//        server.createContext("/users/{id}/reviews", new APIController.userReviewsHandler());
+//        server.createContext("/orders/{id}", new APIController.orderHandler());
+//        server.createContext("/products", new APIController.productHandler());
+//        server.createContext("/products/{id}", new APIController.productDetailHandler());
+        server.setExecutor(Executors.newFixedThreadPool(10));
+        server.start();
+        System.out.println("Server berjalan di : http://localhost:8071/");
     }
 }
