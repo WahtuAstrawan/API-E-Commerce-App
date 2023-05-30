@@ -15,7 +15,9 @@ Request Method GET digunakan untuk mendapatkan data dari database. Request Metho
 
 ####  1. Mendapatkan data semua user 
 Untuk mendapatkan semua user yang ada, dapat menggunakan url seperti berikut.
+
  http://localhost:8071/users <br>
+ 
 Hasil eksekusi url diatas dapat dilihat sebagai berikut.
  ```
  [
@@ -62,7 +64,7 @@ Hasil eksekusi url diatas dapat dilihat sebagai berikut.
 #### 2) Mendapatkan data detail user berdasarkan id</p>
 Untuk mendapatkan data user detail (beserta addressnya) berdasarkan id, dapat menggunakan url sebagai berikut.
 
- http://localhost:8071/users/{id} 
+http://localhost:8071/users/{id} 
 
 Hasil eksekusi dengan id 2 dapat dilihat sebagai berikut.
 
@@ -109,7 +111,8 @@ Hasil eksekusi dengan id 1 dapat dilihat sebagai berikut :
 
 #### 4) Mendapatkan order berdasarkan id user
 Untuk mendapatkan order berdasarkan id, dapat menggunakan url sebagai berikut.
- http://localhost:8071/users/{id}/orders
+
+http://localhost:8071/users/{id}/orders
 
 Hasil eksekusi dengan id 5 dari url diatas, dapat dilihat sebagai berikut.
 ```
@@ -143,6 +146,7 @@ Hasil eksekusi dengan id 1 dapat dilihat sebagai berikut.
 price berdasarkan id
 
 Untuk mendapatkan data diatas kita dapat menggunakan url sebagai berikut
+
 http://localhost:8071/orders/{id}
 
 Hasil eksekusi dengan id 1 dapat dilihat sebagai berikut.
@@ -168,6 +172,7 @@ Hasil eksekusi dengan id 1 dapat dilihat sebagai berikut.
 #### 7) Melihat semua daftar produk ada
 
 Untuk melihat semua daftar produk kita dapat menggunakan url berikut :
+
 http://localhost:8071/products
 
 Hasil eksekusi dapat dilihat sebagai berikut :
@@ -187,6 +192,7 @@ Hasil eksekusi dapat dilihat sebagai berikut :
 
 #### 7) Melihat produk dan user berdasarkan id
 Untuk melihat produk dan user dari id kita dapat menggunakan url berikut :
+
 http://localhost:8071/products/{id}
 
 Hasil eksekusi dengan id 1 adalah sebagai berikut.
@@ -213,7 +219,7 @@ agsl
 <br><h3> Request Method POST </h3>
 Request Method POST digunakan untuk menambah record baru ke dalam sebuah tabel. Untuk menggunakan Request Method POST pada API ini, bisa mengirimkan url seperti pada contoh berikut.
 
- http://localhost:8071/users 
+http://localhost:8071/users 
 
 File JSON :
 
@@ -239,7 +245,7 @@ Pada contoh diatas, '/users' dan file JSON dapat diganti sesuai dengan kebutuhan
 <br><h3> Request Method PUT </h3>
 Request Method PUT digunakan untuk mengubah data yang ada pada tabel. Untuk menggunakan Request Method PUT pada API ini, bisa mengirimkan url seperti pada contoh berikut.
 
- http://localhost:8071/users/{id}
+http://localhost:8071/users/{id}
 
 File JSON :
 ```
@@ -253,7 +259,7 @@ File JSON :
 }
 ```
 
-Pada contoh diatas '/users', /id, dan file JSON dapat diganti sesuai dengan kebutuhan Anda. Jika dieksekusi, maka akan menghasilkan output sebagai berikut :
+Pada contoh diatas '/users', /id, dan file JSON dapat diganti sesuai dengan kebutuhan Anda. Jika dieksekusi, maka akan menghasilkan response sebagai berikut :
 ```
 {
     "message": "Berhasil mengupdate data users dengan ID : 5"
@@ -263,9 +269,9 @@ Pada contoh diatas '/users', /id, dan file JSON dapat diganti sesuai dengan kebu
 <br><h3> Request Method DELETE </h3>
 Request Method DELETE digunakan untuk menghapus record yang ada pada sebuah tabel. Untuk menggunakan Request Method DELETE pada API ini, bisa mengirimkan url seperti pada contoh berikut.
 
- http://localhost:8071/users/{id}
+http://localhost:8071/users/{id}
 
-Pada contoh diatas, '/users' dan /id dapat diganti sesuai dengan kebutuhan Anda. Jika dieksekusi, maka akan menghasilkan output sebagai berikut :
+Pada contoh diatas, '/users' dan /id dapat diganti sesuai dengan kebutuhan Anda. Jika dieksekusi, maka akan menghasilkan response sebagai berikut :
 ```
 {
     "message": "Berhasil menghapus data users dengan ID : 6"
