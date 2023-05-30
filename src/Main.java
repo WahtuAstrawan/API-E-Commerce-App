@@ -14,14 +14,14 @@ public class Main {
         connection = databaseManager.connect();
         System.out.println("Berhasil connect ke database");
 
-        server.createContext("/users", new APIController.UserHandler());
-        server.createContext("/users/", new APIController.UserByIdHandler());
-//        server.createContext("/users/{id}/products", new APIController.userProductsHandler());
-//        server.createContext("/users/{id}/orders", new APIController.userOrdersHandler());
-//        server.createContext("/users/{id}/reviews", new APIController.userReviewsHandler());
-//        server.createContext("/orders/{id}", new APIController.orderHandler());
-//        server.createContext("/products", new APIController.productHandler());
-//        server.createContext("/products/{id}", new APIController.productDetailHandler());
+        server.createContext("/users", new Handler.UserHandler());
+        server.createContext("/users/", new Handler.UserByIdHandler());
+        server.createContext("/addresses", new Handler.AddressesHandler());
+        server.createContext("/addresses/", new Handler.AddressesHandler());
+        server.createContext("/orders/", new Handler.OrderByIdHandler());
+        server.createContext("/products", new Handler.ProductHandler());
+        server.createContext("/products/", new Handler.ProductByIdHandler());
+
         server.setExecutor(Executors.newFixedThreadPool(10));
         server.start();
         System.out.println("Server berjalan di : http://localhost:8071/");
