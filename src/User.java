@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class User {
 
     private int id;
@@ -6,6 +8,9 @@ public class User {
     private String email;
     private String phone_number;
     private String type;
+    private ArrayList<Address> addresses;
+    private ArrayList<Product> products;
+    private ArrayList<Order> orders;
 
     public User(int id, String first_name, String last_name, String email, String phone_number, String type) {
         this.id = id;
@@ -14,6 +19,9 @@ public class User {
         this.email = email;
         this.phone_number = phone_number;
         this.type = type;
+        addresses = new ArrayList<>();
+        products = new ArrayList<>();
+        orders = new ArrayList<>();
     }
 
     public int getId() {
@@ -62,5 +70,21 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void addAddress(Address address) {
+        addresses.add(address);
+    }
+
+    public ArrayList<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 }
